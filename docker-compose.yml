@@ -1,0 +1,59 @@
+version: "3.8"
+
+services:
+    nginx:
+        restart: always
+        build:
+            context: ./nginx
+            dockerfile: Dockerfile
+        image: 171793/nginx
+        container_name: nginx
+        networks:
+            - flask-nginx
+        ports:
+            - "8080:80"
+        depends_on:
+            - "db"
+            - "flask"
+
+    flask:
+        restart: always
+        command: python app.py
+        build:
+            context: ./flask
+            dockerfile: Dockerfile
+        image: 171793/flask
+        container_name: flask
+        entrypoint: dockerize -wait tcp://db:3306 -timeout 30s
+        ports:
+            - "5000"
+        networks:
+            - flask-mysql
+            - flask-nginx
+        tty: true
+        depends_on:
+            - "db"
+
+    db:
+        image: mysql:5.7
+        command: 
+            - --innodb-use-native-aio=0
+        container_name: db
+        restart: always
+        tty: true
+        volumes:
+            - "./mysql/dbdata:/var/lib/mysql"
+            - "./mysql/sql/init.sql:/docker-entrypoint-initdb.d/init.sql"
+        environment:
+            - MYSQL_DATABASE=pfa
+            - MYSQL_ROOT_PASSWORD=root
+        networks:
+            - flask-mysql
+
+networks:
+    flask-mysql:
+        name: flask-mysql
+        driver: bridge
+    flask-nginx:
+        name: flask-nginx
+        driver: bridge
