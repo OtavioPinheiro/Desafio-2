@@ -6,7 +6,7 @@
 <img src="https://badgen.net/badge/icon/docker?icon=docker&label"/></a>
 
 [![](https://badgen.net/github/commits/OtavioPinheiro/Desafio-1)](https://github.com/OtavioPinheiro/Desafio-1/commits)
-[![](https://img.shields.io/badge/Python-83%25-green)]()
+[![](https://img.shields.io/badge/Python-62%25-green)]()
 
 # Desafio 2 do PFA :whale: :snake:
 Primeiro desafio do PFA do curso *Full Cycle*.
