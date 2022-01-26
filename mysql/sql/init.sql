@@ -1,9 +1,5 @@
-CREATE DATABASE pfa;
-
-use pfa;
-
-CREATE TABLE modulos (
-    id int PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS modulos (
+    id int PRIMARY KEY AUTO_INCREMENT, 
     nome varchar(255)
 );
 

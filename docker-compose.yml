@@ -38,6 +38,7 @@ services:
         image: mysql:5.7
         command: 
             - --innodb-use-native-aio=0
+            - --default-authentication-plugin=mysql_native_password
         container_name: db
         restart: always
         tty: true
@@ -45,8 +46,8 @@ services:
             - "./mysql/dbdata:/var/lib/mysql"
             - "./mysql/sql/init.sql:/docker-entrypoint-initdb.d/init.sql"
         environment:
-            - MYSQL_DATABASE=pfa
             - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=pfa
         networks:
             - flask-mysql
 
