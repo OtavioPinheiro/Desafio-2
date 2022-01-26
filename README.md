@@ -45,6 +45,10 @@ Divirtam-se e bom trabalho!
 - Configurar o arquivo default.conf adequadamente.
 - Compartilhar a porta correta quando executar o *container*, nesta aplicação foi utilizado o `ports` do docker-compose.
 
+## Docker-compose
+### Dockerize
+- Dockerize é uma ferramenta que serve, basicamente, para controlarmos a subida de um serviço. No arquivo docker-compose, quando passamos o entrypoint no serviço flask, não foi necessário informar o docker-entrypoint.sh, então a instrução ficou assim: `dockerize -wait tcp://db:3306 -timeout 30s`
+
 # Execução dos *containers*
 Para executar essa aplicação, após ter realizado o `git clone`, basta rodar o seguinte comando:
 - `docker-compose up -d`
