@@ -8,6 +8,8 @@ services:
             dockerfile: Dockerfile
         image: 171793/nginx
         container_name: nginx
+        entrypoint: dockerize -wait http://flask:5000 /docker-entrypoint.sh
+        command: nginx -g 'daemon off;'
         networks:
             - flask-nginx
         ports:
